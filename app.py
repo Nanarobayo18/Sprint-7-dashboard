@@ -7,14 +7,14 @@ st.set_page_config(page_title="Sprint 7 Dashboard", layout="wide")
 st.title("Sprint 7 — Panel de control")
 st.write("Dashboard de ejemplo con datos simples (puedes cambiar el dataset luego).")
 
-# Dataset de ejemplo
-data = pd.DataFrame(
-    {
-        "marca": ["Ford", "Toyota", "Toyota", "BMW", "Ford", "BMW"],
-        "precio": [12000, 15000, 18000, 35000, 14000, 42000],
-        "anio": [2012, 2016, 2018, 2020, 2014, 2021],
-    }
-)
+# Cargar dataset real
+@st.cache_data
+def load_data():
+    df = pd.read_csv("vehicles_us.csv")
+    df.columns = [c.strip().lower() for c in df.columns]
+    return df
+
+data = load_data()
 
 st.subheader("Vista previa de datos")
 st.dataframe(data)
