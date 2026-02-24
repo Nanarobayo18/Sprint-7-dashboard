@@ -20,8 +20,13 @@ st.subheader("Vista previa de datos")
 st.dataframe(data)
 
 st.sidebar.header("Filtros")
-marca = st.sidebar.multiselect("Marca", sorted(data["marca"].unique()), default=sorted(data["marca"].unique()))
-data_filtrada = data[data["marca"].isin(marca)]
+modelos = st.sidebar.multiselect(
+    "Modelo",
+    sorted(data["model"].dropna().unique()),
+    default=sorted(data["model"].dropna().unique())
+)
+
+data_filtrada = data[data["model"].isin(modelos)]
 
 col1, col2 = st.columns(2)
 
