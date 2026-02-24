@@ -32,10 +32,10 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Distribución de precios")
-    fig = px.histogram(data_filtrada, x="precio", nbins=10)
+    fig = px.histogram(data_filtrada, x="price", nbins=10)
     st.plotly_chart(fig, use_container_width=True)
 
 with col2:
     st.subheader("Precio por marca")
-    fig2 = px.box(data_filtrada, x="marca", y="precio")
+    fig2 = px.box(data_filtrada, x="model", y="price")
     st.plotly_chart(fig2, use_container_width=True)
